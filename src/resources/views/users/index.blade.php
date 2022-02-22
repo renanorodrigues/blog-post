@@ -23,4 +23,5 @@
     </tbody>
   </table>
 
+  <a class="btn btn-primary" href="{{ url('users/create') }}" role="button">New User</a>
 @endsection
