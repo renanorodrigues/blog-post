@@ -12,11 +12,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $users = User::all();
 
-        return view('users.index', compact('users'));
+        $message = $request->session()->get('message');
+
+        return view('users.index', compact('users', 'message'));
     }
 
     /**
@@ -37,7 +39,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'first_name' => 'bail|required|max:255',
+            'last_name' => 'required|max:255',
+            'email' => 'required|unique:users',
+            'password' => 'required'
+        ]);
+
         $user = User::create($request->all());
+
+        $request->session()
+                ->flash(
+                    'message',
+                    'User saved successfully!'
+                );
 
         return redirect('/users');
     }
