@@ -1,5 +1,6 @@
 # Blog Post - Your daily posts
 
+Blog Post is a writing project for readers who want to share knowledge for free. Join this community!
 This project was made in Laravel for review framework concepts. So be free to use it!
 
 ## Tutorial
