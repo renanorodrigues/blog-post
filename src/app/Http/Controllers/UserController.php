@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::all();
+        $users = User::orderBy('id')->get();
 
         $message = $request->session()->get('message');
 
@@ -99,6 +99,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id);
+
+        return response()->json( [ 'user_id' => $id ], 200 );
     }
 }
