@@ -57,20 +57,24 @@
     $("#btn_destroy_user").click(function(){
       var id = $(this).data("id");
       var token = $(this).data("token");
-      $.ajax({
-        url: "users/" + id,
-        type: 'DELETE',
-        dataType: "JSON",
-        data: {
-            "id": id,
-            "_method": 'DELETE',
-            "_token": token,
-        },
-        success: function (data){
-          var remove_tr_table = $("#tr_user_" + data['user_id']);
-          remove_tr_table.remove();
-        }
-      });
+      var confirmed = confirm("Are you sure?");
+
+      if(confirmed){
+        $.ajax({
+          url: "users/" + id,
+          type: 'DELETE',
+          dataType: "JSON",
+          data: {
+              "id": id,
+              "_method": 'DELETE',
+              "_token": token,
+          },
+          success: function (data){
+            var remove_tr_table = $("#tr_user_" + data['user_id']);
+            remove_tr_table.remove();
+          }
+        });
+      }
     });
   </script>
 @endsection
