@@ -32,4 +32,18 @@ class User extends Authenticatable
     protected $hidden = [
         'password'
     ];
+
+    public function fullName(){
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function profiles()
+    {
+        return $this->belongsToMany(Profile::class);
+    }
 }
