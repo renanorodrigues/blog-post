@@ -34,6 +34,13 @@
             <td>{{ $user->last_name }}</td>
             <td>{{ $user->email }}</td>
             <td>
+              <a 
+                class="btn btn-info btn-sm"
+                href="{{ url('users/'.$user->id) }}"
+                role="button">
+                <i class="fa-solid fa-address-card"></i>
+              </a>
+
               <button
                 id="btn_destroy_user"
                 class="btn btn-danger btn-sm"
