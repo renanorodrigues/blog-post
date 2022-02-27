@@ -30,13 +30,23 @@
           <strong>E-mail: </strong>
           <span>{{ $user->email }}</span>
         </li>
+        <li class="list-group-item">
+          <strong>Profiles: </strong>
+          @foreach($user->profiles as $profile)
+            <span>
+              {{ $profile->name }}
+            </span>
+          @endforeach
+        </li>
       </ul>
     </div>
 
     <a
       class="btn btn-primary mt-2"
       href="{{ url('users/'.$user->id.'/edit') }}"
-      role="button">Edit User
+      role="button"
+    >
+      <i class="fa-solid fa-user-pen"></i> Edit User
     </a>
   </div>
 @endsection
