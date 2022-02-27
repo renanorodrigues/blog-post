@@ -41,6 +41,13 @@
                 <i class="fa-solid fa-address-card"></i>
               </a>
 
+              <a 
+                class="btn btn-warning btn-sm"
+                href="{{ url('users/'.$user->id.'/edit') }}"
+                role="button">
+                <i class="fa-solid fa-user-pen"></i>
+              </a>
+
               <button
                 id="btn_destroy_user"
                 class="btn btn-danger btn-sm"
@@ -55,7 +62,9 @@
       </tbody>
     </table>
 
-    <a class="btn btn-primary" href="{{ url('users/create') }}" role="button">New User</a>
+    <a class="btn btn-primary" href="{{ url('users/create') }}" role="button">
+      <i class="fa-solid fa-user-plus"></i> New User
+    </a>
   </div>
 @endsection
 
