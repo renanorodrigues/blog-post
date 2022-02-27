@@ -45,7 +45,9 @@
       </div>
     
       <input class="btn btn-primary" type="submit" value="Submit">
-      <a class="btn btn-secondary" href="{{ url('users/'.$user->id) }}" role="button">Show User</a>
+      <a class="btn btn-secondary" href="{{ url('users/'.$user->id) }}" role="button">
+        <i class="fa-solid fa-address-card"></i> Show User
+      </a>
     </form>
   </div>
 @endsection
