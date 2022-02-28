@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use DB;
 
 class ProfileSeeder extends Seeder
 {
@@ -19,7 +20,7 @@ class ProfileSeeder extends Seeder
         foreach ($profiles as $profile) {
             DB::table('profiles')->insert([
                 'name' => $profile,
-                'description' => $this->faker->jobTitle()
+                'description' => str_shuffle('abcdefghi')
             ]);
         }
     }
