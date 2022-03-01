@@ -53,6 +53,21 @@
           <input type="password" class="form-control" id="password" name="password">
         </div>
       </div>
+
+      <div class="mb-3 row">
+        <label for="password" class="col-sm-2 col-form-label">Profile</label>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <select multiple class="form-control" id="profiles" name="profiles[]">
+              @foreach(App\Models\Profile::enum_profiles() as $profile_name => $profile_id)
+                <option value='{{ $profile_id }}'>
+                  {{ $profile_name }}
+                </option>
+              @endforeach
+            </select>
+          </div>
+        </div>
+      </div>
   
       <input class="btn btn-primary" type="submit" value="Submit">
       <a class="btn btn-secondary" href="{{ url('users') }}" role="button">List Users</a>
