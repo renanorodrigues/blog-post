@@ -49,8 +49,7 @@
               </a>
 
               <button
-                id="btn_destroy_user"
-                class="btn btn-danger btn-sm"
+                class="btn btn-danger btn-sm btn_destroy_user"
                 data-id="{{ $user->id }}" 
                 data-token="{{ csrf_token() }}" 
               >
@@ -70,7 +69,7 @@
 
 @section('script')
   <script type="text/javascript">
-    $("#btn_destroy_user").click(function(){
+    $(".btn_destroy_user").click(function(){
       var id = $(this).data("id");
       var token = $(this).data("token");
       var confirmed = confirm("Are you sure?");
