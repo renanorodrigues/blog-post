@@ -24,10 +24,10 @@ class UsersFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'bail|required|max:255',
-            'last_name' => 'required|max:255',
-            'email' => 'required|unique:users',
-            'password' => 'required'
+            'users.first_name' => 'bail|required|max:255',
+            'users.last_name' => 'required|max:255',
+            'users.email' => 'required|unique:users',
+            'users.password' => 'required'
         ];
     }
 }
