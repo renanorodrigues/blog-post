@@ -29,28 +29,28 @@
       <div class="mb-3 row">
         <label for="first_name" class="col-sm-2 col-form-label">First Name</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" id="first_name" name="first_name">
+          <input type="text" class="form-control" id="first_name" name="users[first_name]">
         </div>
       </div>
   
       <div class="mb-3 row">
         <label for="last_name" class="col-sm-2 col-form-label">Last Name</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" id="last_name" name="last_name">
+          <input type="text" class="form-control" id="last_name" name="users[last_name]">
         </div>
       </div>
   
       <div class="mb-3 row">
         <label for="email" class="col-sm-2 col-form-label">Email</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" id="email" name="email" placeholder="email@example.com">
+          <input type="text" class="form-control" id="email" name="users[email]" placeholder="email@example.com">
         </div>
       </div>
   
       <div class="mb-3 row">
         <label for="password" class="col-sm-2 col-form-label">Password</label>
         <div class="col-sm-6">
-          <input type="password" class="form-control" id="password" name="password">
+          <input type="password" class="form-control" id="password" name="users[password]">
         </div>
       </div>
 
