@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\UsersFormRequest;
 use App\Models\User;
+use App\Models\Profile;
+use App\Services\LinkProfileToUserService;
 
 class UserController extends Controller
 { 
@@ -38,17 +40,21 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UsersFormRequest $request)
+    public function store(UsersFormRequest $request, LinkProfileToUserService $serviceProfileUser)
     {
-        $user = User::create($request->all());
+        $user = User::create($request->users);
 
-        $request->session()
-                ->flash(
-                    'message',
-                    'User saved successfully!'
-                );
-
-        return redirect('/users');
+        if($this->savedProfileInUser($request->profiles, $user)){
+            $request->session()
+                    ->flash(
+                        'message',
+                        'User and profile(s) are saved successfully!'
+                    );
+    
+            return redirect('/users');
+        } else {
+            return redirect('/users/create');
+        }
     }
 
     /**
@@ -109,5 +115,19 @@ class UserController extends Controller
         User::destroy($id);
 
         return response()->json( [ 'user_id' => $id ], 200 );
+    }
+
+    private function savedProfileInUser(array $profileParams, User $user) : bool {
+        $result;
+
+        foreach($profileParams as $profile_id){
+            $profile = Profile::findOrFail($profile_id);
+
+            $service = new LinkProfileToUserService($profile, $user);
+            $result = $service->call();
+            if($result == false) break;
+        };
+
+        return $result;
     }
 }
