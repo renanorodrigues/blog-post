@@ -40,11 +40,14 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UsersFormRequest $request, LinkProfileToUserService $serviceProfileUser)
+    public function store(UsersFormRequest $request)
     {
         $user = User::create($request->users);
+        $profiles_params = $request->profiles;
+        $service = new LinkProfileToUserService($profiles_params, $user);
+        $result = $service->call();
 
-        if($this->savedProfileInUser($request->profiles, $user)){
+        if($result){
             $request->session()
                     ->flash(
                         'message',
@@ -115,19 +118,5 @@ class UserController extends Controller
         User::destroy($id);
 
         return response()->json( [ 'user_id' => $id ], 200 );
-    }
-
-    private function savedProfileInUser(array $profileParams, User $user) : bool {
-        $result;
-
-        foreach($profileParams as $profile_id){
-            $profile = Profile::findOrFail($profile_id);
-
-            $service = new LinkProfileToUserService($profile, $user);
-            $result = $service->call();
-            if($result == false) break;
-        };
-
-        return $result;
     }
 }
